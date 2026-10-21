@@ -1,292 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A little holiday coding adventure. Explore Christmas-themed programming puzzles made by our community.">
   <title>Mini Advent of Code</title>
-  <link rel="icon" type="image/x-icon"
-    href="https://raw.githubusercontent.com/leox7-bths/mini-advent-of-code/refs/heads/main/icon.png">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="icon.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <script src="puzzles.js" defer></script>
+  <script src="progress.js" defer></script>
+  <script src="app.js" defer></script>
 </head>
-
-<body>
-  <header>
-    <button onclick="displayPage('home')" class="text-button" style="color:#00cc00;">[ Home ]</button>
-    <!-- Passing 2050 into displayPage() acts as a default page when clicking [ Days ]:
-     it directs the client to Leo's Advent of Code.
-     
-     When a browsing tab for Advents is created, this should be changed. -->
-    <button onclick="displayPage(2050)" class="text-button" style="color:#00cc00;">[ Days ]</button>
-    <button onclick="displayPage('search')" class="text-button" style="color:#00cc00;">[ Search ]</button>
-    <button onclick="displayPage('about')" class="text-button" style="color:#00cc00;">[ About Us ]</button>
-    <h1>Mini Advent of Code</h1>
+<body class="site-shell">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="brand-row">
+      <a class="brand" href="#home">Mini Advent of Code<span class="brand-star" aria-hidden="true">*</span></a>
+      <span class="edition">// community edition</span>
+    </div>
+    <nav aria-label="Main navigation">
+      <a href="#home" data-nav="home">[Home]</a>
+      <a href="#days" data-nav="days">[Days]</a>
+      <a href="#search" data-nav="search">[Search]</a>
+      <a href="#about" data-nav="about">[About Us]</a>
+      <a class="submit-nav" href="https://forms.gle/cGSTsMqioSZGzgRf9" target="_blank" rel="noopener noreferrer">[Submit a puzzle ↗]</a>
+    </nav>
   </header>
-
-  <main>
-
-    <!-- IDs for calling days using displayPage() -->
-    <div class="controls" id="dayControls">
-      <label for="daySelect">Select Day: </label>
-      <select id="daySelect">
-        <option value="2050">Day 2050</option>
-        <option value="-1">Day -1</option>
-        <option value="25">Day 25</option>
-        <option value="Test">Test Day</option>
-        <option value="Test2">Test Day 2</option>
-      </select>
-    </div>
-
-    <div id="days">
-      <iframe id="dayFrame" scrolling="no" style="
-      width: 100%;
-      max-width: 900px;
-      min-height: 2000px;
-      border: none;
-      display: block;
-      margin: 0 auto;
-      overflow: hidden;
-    " loading="lazy">
-      </iframe>
-
-      <!-- Home -->
-      <div class="day-container" id="home">
-        <h1>[ --- Mini Advent of Code --- ]</h1>
-        <p>
-          Welcome to the official <a style="color: #00cc00;">Mini Advent of Code </a>website!
-          You can browse through various custom, fan-made Christmas-themed programming problems made by your peers here,
-          or you could submit your own through
-          <a href="https://forms.gle/cGSTsMqioSZGzgRf9" target="_blank" style="color: #00cc00;">
-            here</a>.
-        </p>
-        <p>We encourage you to demonstrate your creativity and to submit your own problems to our site: the more the
-          merrier!</p>
-        <p>Happy solving!</p>
-      </div>
-
-      <!-- Search -->
-        <div class="day-container" id="search">
-            <h2>Search Days</h2>
-            <div class="search-bar">
-                <input
-                        type="search"
-                        id="searchInput"
-                        placeholder="Search by day, title, or author"
-                />
-                <button id="filterBtn" class="text-button">Filter ▾</button>
-            </div>
-
-            <div id="filterMenu" class="filter-menu" style="display:none;">
-                <div data-filter="all">All</div>
-                <div data-filter="author">Author</div>
-                <div data-filter="title">Title</div>
-                <div data-filter="day">Day</div>
-            </div>
-
-            <ul id="searchResults"></ul>
+  <div class="page-layout">
+    <main id="main" tabindex="-1">
+      <section id="home" class="page" aria-labelledby="home-title">
+        <h1 id="home-title">--- Your next adventure starts here ---</h1>
+        <p>Somewhere in the North Pole, an elf has a problem.<br class="desktop-break"> Luckily, you brought your keyboard.</p>
+        <p class="intro">Welcome to <em>Mini Advent of Code</em>: Christmas-themed programming puzzles made by your peers. Pick a puzzle, use any language, and find your own way through.</p>
+        <div class="hero-actions"><a href="#days">[Explore the puzzles]</a></div>
+        <figure class="winter-scene" aria-label="An ASCII winter scene with Christmas trees, falling snow, and a cabin">
+          <pre aria-hidden="true"><span class="snow">       .                  +                  .
+                 .                 .                  +
+   +                         </span><span class="gold">*</span><span class="snow">             .
+            .               </span><span class="tree">/\</span><span class="snow">                    .
+                           </span><span class="tree">/o \</span><span class="snow">      .
+      </span><span class="tree-dim">/\</span><span class="snow">                  </span><span class="tree">/*  +\</span><span class="snow">               (
+     </span><span class="tree-dim">/  \</span><span class="snow">      .          </span><span class="tree">/  o  \</span><span class="snow">              )
+    </span><span class="tree-dim">/ +  \</span><span class="snow">               </span><span class="tree">/+   *  \</span><span class="snow">         ___|_
+   </span><span class="tree-dim">/______\</span><span class="snow">             </span><span class="tree">/___o_____\</span><span class="snow">       /_____/\
+      </span><span class="trunk">||</span><span class="snow">       </span><span class="tree-dim">/\</span><span class="snow">           </span><span class="trunk">||</span><span class="snow">          | </span><span class="gold">[]</span><span class="snow"> | |    </span><span class="tree-dim">/\</span>
+<span class="snow">  ____</span><span class="trunk">||</span><span class="snow">____</span><span class="tree-dim">__/_ \</span><span class="snow">___________</span><span class="trunk">||</span><span class="snow">__________|____|_/___</span><span class="tree-dim">_/__\</span>
+<span class="snow">       .        </span><span class="trunk">||</span><span class="snow">       .           .          .
+            .                  .          .</span></pre>
+        </figure>
+        <div class="section-heading"><h2>--- The puzzle trail ---</h2><a href="#days">[View all]</a></div>
+        <div id="featuredDays" class="puzzle-list"></div>
+      </section>
+      <section id="days" class="page" aria-labelledby="days-title" hidden>
+        <h1 id="days-title">--- Puzzle archive ---</h1>
+        <h2 class="archive-heading">Community puzzles <span class="muted">/ <span data-count="community">11</span></span></h2>
+        <div id="communityDays" class="puzzle-list"></div>
+        <p class="footnote">Each solved puzzle earns one star. Progress is saved in this browser.</p>
+      </section>
+      <section id="search" class="page" aria-labelledby="search-title" hidden>
+        <h1 id="search-title">--- Search the archive ---</h1>
+        <div class="search-controls">
+          <div class="search-field"><label for="searchInput">Search puzzles</label><input type="search" id="searchInput" placeholder="Try “time”, “-1”, or “Ava”…" autocomplete="off"></div>
+          <div><label for="searchFilter">Search in</label><select id="searchFilter"><option value="all">Everything</option><option value="title">Title</option><option value="author">Author</option><option value="day">Day</option></select></div>
         </div>
-
-        <script>
-            const daysIndex = [
-              { day: 2050, title: "Time Travel!?", author: "Leo Xu" },
-              { day: -1, title: "Grinch!", author: "Alston Liu" },
-              { day: 25, title: "Delivery Dilemma", author: "Selina Jiang" },
-              { day: "Test", title: "Test", author: "Test" },
-              { day: "Test2", title: "Test2", author: "Test2" },
-              { day: "Test3", title: "Test3", author: "Test3" }
-            ];
-            let activeFilter = 'all';
-            const input = document.getElementById('searchInput');
-            const results = document.getElementById('searchResults');
-            const filterBtn = document.getElementById('filterBtn');
-            const filterMenu = document.getElementById('filterMenu');
-            // ----- Filter menu toggle -----
-            filterBtn.onclick = () => {
-              filterMenu.style.display =
-                filterMenu.style.display === 'block' ? 'none' : 'block';
-            };
-            // ----- Select filter -----
-            filterMenu.querySelectorAll('div').forEach(option => {
-              option.onclick = () => {
-                activeFilter = option.dataset.filter;
-                filterBtn.textContent = `Filter: ${option.textContent} ▾`;
-                filterMenu.style.display = 'none';
-                runSearch();
-              };
-            });
-
-            // ----- Search -----
-            input.addEventListener('input', runSearch);
-
-            function runSearch() {
-              console.log("runSearch called with query:", input.Value);
-              console.log("activeFilter:", activeFilter);
-
-              const query = input.value.toLowerCase().trim();
-              results.innerHTML = '';
-
-              if (!query) return;
-
-              const matches = daysIndex.filter(d => {
-                if (activeFilter === 'author')
-                  return d.author.toLowerCase().includes(query);
-
-                if (activeFilter === 'title')
-                  return d.title.toLowerCase().includes(query);
-
-                if (activeFilter === 'day')
-                  return d.day.toString().includes(query);
-
-                return (
-                  d.day.toString().includes(query) ||
-                  d.title.toLowerCase().includes(query) ||
-                  d.author.toLowerCase().includes(query)
-                );
-              });
-
-              if (!matches.length) {
-                results.innerHTML = '<li>No results found</li>';
-                return;
-              }
-
-              matches.forEach(d => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                  <button class="text-button" style="color:#00cc00">
-                    Day ${d.day} — ${d.title} (by ${d.author})
-                  </button>
-                `;
-                li.querySelector('button').onclick = () => displayPage(d.day);
-                results.appendChild(li);
-              });
-            }
-
-            // ----- Close filter when clicking outside -----
-            document.addEventListener('click', e => {
-              if (!filterBtn.contains(e.target) && !filterMenu.contains(e.target)) {
-                filterMenu.style.display = 'none';
-              }
-            });
-        console.log("Search script loaded");
-        console.log("daysIndex:", daysIndex);
-        console.log("Search input element:", document.getElementById('searchInput'));
-        </script>
-
-        <!-- About -->
-      <div class="day-container" id="about">
-        <h2>This Advent of Code is also free to use.</h2>
-        <h3>However, we wish you can have basic respect to our site builders </h3>
-        <h3>and the fabulous creativity of our prompt contributors. </h3>
-        <h1>[ --- About Us --- ]</h1>
-        <h2 style="margin: 0;">Development Team</h2>
-        <h3>Lead Developer (scripting, web-design)</h3>
-        <p>
-          <a href="https://github.com/leox7-bths" target="_blank" style="color: #00cc00;">
-            Leo Xu</a>
-
-        </p>
-          <p>
-              <a href="https://github.com/WoodFish0226" target="_blank" style="color: #00cc00;">
-                  Yuhao Chen</a>
-
-              <button onclick="toggleText(1, this)" class="text-button" style="color:#00cc00;">
-                  Expand</button>
-          </p>
-
-        <p id="text1" style="display:none;">
-          Bob the builder was here.
-        </p>
-
-
-        <h3>Writer (web-design, content manager)</h3>
-        <p>
-          <a href="https://github.com/ill-birdie" target="_blank" style="color: #00cc00;">
-            Ava</a>
-
-          <button onclick="toggleText(2, this)" class="text-button" style="color:#00cc00;">
-            Expand</button>
-        </p>
-        <p id="text2" style="display:none;">
-          Hi, I'm the writer and screener of Mini Advent of Code! I'm really excited for the creation of this project,
-          because being able to host, read through, and solve various individual's creations is an honor.
-          If you'd like to personally send me a project, please do through GitHub. I'd love to see what you've made!
-        </p>
-
-
-        <hr style="border: 1px solid #ffffff; margin: 0px 0;">
-        <p style="text-align:center;">⋅ ⋆⋅ ☽ ◯ ☾ ⋅⋆ ⋅</p>
-        <hr style="border: 1px solid #ffffff; margin: 0px 0;">
-        <h3 style="margin: 0;">Contributors</h3>
-        <p style="margin: 0;">Leo Xu - <button onclick="displayPage(1)" class="text-button" style="color:#00cc00;">Day
-            2050</button></p>
-        <p style="margin: 0;">Alston Liu - <button onclick="displayPage(2)" class="text-button"
-            style="color:#00cc00;">Day -1</button></p>
-        <p style="margin: 0;">Selina Jiang - <button onclick="displayPage(3)" class="text-button"
-            style="color:#00cc00;">Day 25</button></p>
-      </div>
-
-
-      <script>
-        function toggleText(id, btn) {
-          const text = document.getElementById('text' + id);
-          if (text.style.display === 'none') {
-            text.style.display = 'block';
-            btn.textContent = 'Collapse';
-          } else {
-            text.style.display = 'none';
-            btn.textContent = 'Expand';
-          }
-        }
-      </script>
-
-    </div>
-  </main>
-
-  <script>
-    const daySelect = document.getElementById('daySelect');
-    const dayControls = document.getElementById('dayControls');
-    const frame = document.getElementById('dayFrame');
-
-    function hideAllInlineDays() {
-      document.querySelectorAll('.day-container').forEach(d => {
-        d.classList.remove('active');
-      });
-    }
-
-    function displayPage(page) {
-      hideAllInlineDays();
-
-      // Displays Home, Search, and About Us pages when prompted
-      if (page == 'home' || page === 'search' || page == 'about') {
-        dayControls.style.display = "none";
-        frame.style.display = "none";
-        document.getElementById(`${page}`).classList.add('active');
-        return;
-      }
-
-      // NORMAL DAYS
-      dayControls.style.display = "block";
-      frame.style.display = "block";
-      frame.src = `days/day${page}.html`;
-    }
-
-    daySelect.addEventListener('change', e => displayPage(e.target.value));
-    displayPage('home');
-  </script>
-
-  <script>
-    function toggleText(id, btn) {
-      const text = document.getElementById('text' + id);
-      if (text.style.display === 'none') {
-        text.style.display = 'block';
-        btn.textContent = 'Collapse';
-      } else {
-        text.style.display = 'none';
-        btn.textContent = 'Expand';
-      }
-    }
-  </script>
+        <p id="searchCount" class="muted" role="status"></p>
+        <div id="searchResults" class="puzzle-list"></div>
+        <div id="emptySearch" class="empty-state" hidden><h2>No puzzles on this trail.</h2><p>Try another title, day, or author.</p><button id="clearSearch" class="text-button">[Clear search]</button></div>
+      </section>
+      <section id="about" class="page prose" aria-labelledby="about-title" hidden>
+        <h1 id="about-title">--- A small coding tradition ---</h1>
+        <p>Mini Advent of Code is a free, community-made collection of Christmas-themed programming problems. We love the creativity of our contributors and the many different ways you can solve their puzzles.</p>
+        <p>Inspired by <a href="https://adventofcode.com/" target="_blank" rel="noopener noreferrer">Advent of Code</a>. This is an independent fan project, not affiliated with the original event.</p>
+        <h2>--- The people behind the puzzles ---</h2>
+        <h3>Development</h3>
+        <details><summary>Leo Xu <span class="muted">— lead developer, scripting &amp; web design</span></summary><p>Wild grass, berries, butterflies, a cool breeze... When I want fresh air, I like to go out where the plants grow wild and touch the life-filled world with my own hands.</p><a href="https://github.com/m3e66" target="_blank" rel="noopener noreferrer">[GitHub ↗]</a></details>
+        <details><summary>Yuhao Chen <span class="muted">— development</span></summary><p>Bob the builder was here.</p><a href="https://github.com/WoodFish0226" target="_blank" rel="noopener noreferrer">[GitHub ↗]</a></details>
+        <h3>Writing &amp; content</h3>
+        <details><summary>Ava <span class="muted">— writer, web design &amp; content manager</span></summary><p>Hi, I'm the writer and screener of Mini Advent of Code! I'm really excited for the creation of this project, because being able to host, read through, and solve various individuals' creations is an honor.</p><p>If you'd like to personally send me a project, please do through GitHub. I'd love to see what you've made!</p><a href="https://github.com/ill-birdie" target="_blank" rel="noopener noreferrer">[GitHub ↗]</a></details>
+        <h3>Puzzle contributors</h3>
+        <ul class="contributors"><li>Ava <a href="#day/24">[Day 24]</a></li><li>selina <a href="#day/25">[Day 25]</a></li><li>tyson <a href="#day/99">[Day 99]</a></li><li>ada <a href="#day/74">[Day 74]</a></li><li>Yuhao <a href="#day/2000">[Day 2000]</a></li><li>jareth <a href="#day/68">[Day 68]</a></li><li>Justin &amp; Muntasir <a href="#day/777">[Day 777]</a></li><li>Leo Xu <a href="#day/2050">[Day 2050]</a></li><li>Alston Liu <a href="#day/-1">[Day -1]</a></li><li>Selina Jiang <span class="muted">— early contributor</span></li></ul>
+        <p>Please respect the builders and credit the creativity of our puzzle contributors. Happy solving!</p>
+        <a href="https://forms.gle/cGSTsMqioSZGzgRf9" target="_blank" rel="noopener noreferrer">[Contribute your own puzzle ↗]</a>
+      </section>
+      <section id="puzzle" class="page" aria-label="Puzzle reader" hidden>
+        <div class="puzzle-toolbar"><a href="#days">[← All puzzles]</a><div><label for="daySelect">Jump to</label><select id="daySelect"></select></div></div>
+        <p id="readerStatus" role="status" hidden></p>
+        <iframe id="dayFrame" title="Selected programming puzzle"></iframe>
+      </section>
+      <section id="notfound" class="page" aria-labelledby="notfound-title" hidden><h1 id="notfound-title">--- Puzzle not found ---</h1><p>This puzzle is not in the archive.</p><a href="#days">[Browse available puzzles]</a></section>
+      <noscript><p>This archive needs JavaScript to browse puzzles. You can still open <a href="days/day2050.html">Day 2050</a> directly.</p></noscript>
+    </main>
+    <aside class="sidebar" aria-label="Community information">
+      <p class="aside-label"><span class="gold" aria-hidden="true">*</span> THE COMMUNITY BOARD</p>
+      <dl class="community-stats"><div><dt>Community puzzles</dt><dd data-count="community">11</dd></div><div><dt>Language of choice</dt><dd>any</dd></div><div><dt>Your stars</dt><dd id="starCount" aria-live="polite">0 / 11</dd></div></dl>
+      <div class="aside-section"><h2>Have a puzzle in mind?</h2><p>A mischievous elf. A missing present. An impossible delivery route. We'd love to see what you make.</p><a href="https://forms.gle/cGSTsMqioSZGzgRf9" target="_blank" rel="noopener noreferrer">[Submit a puzzle ↗]</a></div>
+      <div class="aside-section"><p class="aside-label">HOW TO PLAY</p><ol><li>Choose a puzzle.</li><li>Read the story.</li><li>Solve it in any language.</li><li>Check your answer.</li></ol><p class="muted">Stars and inputs stay in this browser.</p></div>
+    </aside>
+  </div>
+  <footer class="site-footer"><span>Mini Advent of Code <span class="gold" aria-hidden="true">*</span> A community adventure.</span><a href="https://github.com/m3e66/mini-advent-of-code" target="_blank" rel="noopener noreferrer">[Source on GitHub ↗]</a></footer>
 </body>
-
-
 </html>

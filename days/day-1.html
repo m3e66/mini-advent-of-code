@@ -1,104 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <title>Day -1</title>
-  <link rel="stylesheet" href="../style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day -1: Grinch! | Mini Advent of Code</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../puzzles.js" defer></script>
+  <script src="../progress.js" defer></script>
+  <script src="../puzzle-runner.js" defer></script>
 </head>
+<body class="puzzle-body" data-day="-1">
 
-<body>
-  <h2>-- Day -1: <h7><a target="_blank" style="color: #ac0808;">Grinch!</a></h7> --</h2>
-  <p><small><a target="_blank" style="color: #bdbdbd;">By Alston Liu</a></small></p>
-  <p>Welcome to day negative one! Somehow this is achievable with time travel! :D</p>
-  <p>In order to start Advent lets do the following puzzle!</p>
+  <h1>--- Day -1: Grinch! ---</h1>
+  <p class="muted">By Alston Liu</p>
+  <p>Welcome to day negative one! Somehow this is achievable with time travel. The engineer who automated the Christmas tree decorations has time-traveled to Las Vegas, leaving the Grinch a chance to scramble the lights.</p>
+  <p>Decorations of the same color now appear next to each other. Find how many neighboring decorations need your attention so the tree can shine again.</p>
+  <h2>--- The decoration list ---</h2>
+  <p>Your input contains rows of digits. Each digit is a color. Choose one digit from each row:</p>
+  <ol>
+    <li>From the first row, choose the first digit; from the second, choose the second; and so on.</li>
+    <li>If that position goes past the end of a row, wrap around to the beginning of <em>the same row</em> as many times as needed.</li>
+    <li>Compare each chosen digit with the one chosen from the previous row. Count one match when they are equal. The first row has no previous row and contributes no match.</li>
+  </ol>
+  <pre class="puzzle-input">123456
+0123456
+654321
+123</pre>
+  <p>The chosen digits are <em>1, 1, 4, 1</em>. On row four, position four wraps to position one. Only the first pair matches, so the example answer is <em>1</em>.</p>
+  <p><em>How many adjacent pairs of chosen digits match in your input?</em></p>
 
-  <p style="margin:0; text-align:center; color:#fbff27;">?</p>
-  <p style="margin:0; text-align:center; color:#097000;">/+\</p>
-  <p style="margin:0; text-align:center; color:#097000;">/o*+\</p>
-  <p style="margin:0; text-align:center; color:#097000;">/++*o+\</p>
-  <p style="margin:0; text-align:center; color:#097000;">/o*+++*+\</p>
-  <p style="margin:0; text-align:center; color:#097000;">/+++*o*+++\</p>
-  <p style="margin:0; text-align:center; color:#097000;">/o*++o*+++*+\</p>
-  <p style="margin:0; text-align:center; color:#097000;">/++*o*+++*o+++\</p>
-  <p style="margin:0; text-align:center; color:#097000;">/o*+*o*+****+o**\</p>
-  <p style="margin:0; text-align:center; color:#743e00;">***</p>
-  <p style="margin:0; text-align:center; color:#743e00;">***</p>
-  <p style="margin:0; text-align:center; color:#743e00;">*****</p>
-
-  <p>It's "Advent Code Time" for whatever reason we went from 50 challengers to one! But conveniently that is all you
-    need to decorate the Christmas tree. That star you can collect by completing the following puzzle!</p>
-  <p>Due to the <a href="https://en.wikipedia.org/wiki/Industrial_Revolution" target="_blank"
-      style="color: #00cc00;">Industrial Revolution</a>, the tree's additional decorations are automated. The issue is
-    that the engineer <a target="_blank" style="color: #00cc00;">Alston Liu</a>, TIME TRAVELED TO LAS VEGAS! So there
-    are some errors which make decorations of the same color appear next to each other when they should be spread out!
-  </p>
-  <p>We will use the following input as an example.</p>
-  <p style="margin:0;"><a target="_blank" style="color: #ffffff;">1</a>23456</p>
-  <p style="margin:0;">0<a target="_blank" style="color: #ffffff;">1</a>23456</p>
-  <p style="margin:0;">65<a target="_blank" style="color: #ffffff;">4</a>321</p>
-  <p style="margin:0;"><a target="_blank" style="color: #ffffff;">1</a>23</p>
-  <img src="https://pngimg.com/uploads/christmas_tree/christmas_tree_PNG122.png" height="200" width="150">
-  <p>1. You have a list of numbers in each row</p>
-  <p>2. You will have to take the first number of the first line <br> ex. 1</p>
-  <p>3. You will have to take the second number of the second line <br> ex. 1</p>
-  <p>4. Then compare those numbers if they are equal <br> ex. 1 <a target="_blank" style="color: #ffffff;">They are
-      equal!</a></p>
-  <p>5. Repeat steps 2 and 3 with the next lines such as... </p>
-  <p>
-  <p style="text-indent:30px;"> * You take the third number of the third line </p>
-  <p>
-  <p style="text-indent:30px;"> * Then compare this new number with the previous most recent number :D </p>
-  <p>
-  <p style="text-indent:30px;"> * If the index of the number you take is not available, wrap around the same line such
-    as... </p>
-  <p>
-  <p style="text-indent:60px;"> - if the current line is "123456" but we want to take the 7th number, we would take the
-    first number which is "1"</p>
-  <p>6. The final answer will be the number of times the two numbers are equal!</p>
-  <p>
-  <p style="text-indent:30px;"> * In the example it would be one!</p>
-
-  <p>
-    Your puzzle input was
-    <span id="output-11"></span>
-  </p>
-
-  <textarea style="max-width: 200px; min-height: 10px; max-height: 20px;" id="input-1"
-    placeholder="Paste answer here..."></textarea>
-  <br>
-  <button onclick="dayneg1()" class="text-button" style="color:#00cc00;">[ Submit ]</button>
-  <div id="output-12"></div>
-  <p>Feel stuck? Well sadly there is not enough Reddit discussion for this puzzle</p>
-
-  <script>
-    let puzzleInputneg1 = Math.floor(Math.random() * 10);
-    document.getElementById("output991").textContent = puzzleInput;
-
-    function simpleday() {
-
-      let userInput = Number(document.getElementById("input99").value);
-
-      if (!isNaN(userInput)) {
-        if (userInput === puzzleInputneg1 + 1) {
-          document.getElementById("output992").textContent = "Correct!";
-          document.getElementById("input99").disabled = true;
-        } else {
-          document.getElementById("output992").textContent = "Wrong!";
-        }
-      } else {
-        document.getElementById("output992").textContent = "Please enter a valid number!";
-      }
-    }
-  </script>
-  <script>
-    function resizeIframe() {
-      const height = document.documentElement.scrollHeight;
-      parent.document.getElementById("dayFrame").style.height = height + "px";
-    }
-
-    window.addEventListener("load", resizeIframe);
-  </script>
+  <section id="puzzleControls" aria-label="Puzzle input and answer"></section>
+  <noscript>Enable JavaScript to generate your input and check answers.</noscript>
 </body>
-
 </html>

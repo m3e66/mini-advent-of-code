@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 74: Uncle Bob kindly sponsored this feast | Mini Advent of Code</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../puzzles.js" defer></script>
+  <script src="../progress.js" defer></script>
+  <script src="../puzzle-runner.js" defer></script>
+</head>
+<body class="puzzle-body" data-day="74">
+  <h1>--- Day 74: Uncle Bob kindly sponsored this feast ---</h1>
+  <p class="muted">By ada</p>
+  <p>A big family has come together to celebrate Christmas by having a huge pot-luck feast together. The family is eating at Uncle Bob's huge mansion.</p>
+  <p>The foods on offer are <code>TURKEY</code>, <code>BREAD</code>, <code>SALAD</code>, <code>HAM</code>, <code>SAUSAGE</code>, <code>PIZZA</code>, <code>EGG</code>, <code>DRUMSTICK</code>, <code>BEEF</code>, and <code>LASAGNA</code>.</p>
+  <p>Each person eats four different foods. However, not long after the feast, Little Bobby junior becomes sick. The family discovers that four foods—<em>PIZZA, EGG, SALAD, and HAM</em>—were prepared poorly.</p>
+  <p>The sick family members must go to the hospital, and nobody has insurance. Uncle Bob has kindly agreed to pay their bills.</p>
+  <h2>--- Feast rules ---</h2>
+  <p>Use these rules for this puzzle:</p>
+  <ul>
+    <li>A vaccinated guest becomes sick after eating <em>at least 5 servings</em> of poisoned food.</li>
+    <li>An unvaccinated guest becomes sick after eating <em>at least 3 servings</em> of poisoned food.</li>
+    <li>Add poisoned servings across all four foods; the threshold is not per dish.</li>
+    <li>Guests are aged <em>10 through 99</em>, inclusive.</li>
+    <li>A sick minor, aged <em>10–17</em>, costs <em>$528</em>. A sick adult, aged <em>18–99</em>, costs <em>$1,647</em>.</li>
+    <li>Each guest eats four distinct foods, with <em>1–4 servings</em> of each. Different guests may eat the same foods.</li>
+  </ul>
+  <p>Charge one bill per sick guest. Guests who do not become sick add nothing to the total.</p>
+  <h2>--- Decode the guest list ---</h2>
+  <p>Your input is one comma-separated list. The first digit of each record is vaccination status: <code>1</code> for vaccinated or <code>0</code> for unvaccinated. The next two digits give the guest's age. Then come four uppercase food names, each immediately followed by its serving count.</p>
+  <pre class="puzzle-input">016TURKEY2BREAD3SALAD2HAM3,120SAUSAGE4PIZZA2EGG4DRUMSTICK3</pre>
+  <p>The first guest is unvaccinated and 16 years old. They eat <code>2 + 3 = 5</code> poisoned servings from SALAD and HAM. This meets the threshold of 3, so their hospital bill is <em>$528</em>.</p>
+  <p>The second guest is vaccinated and 20 years old. They eat <code>2 + 4 = 6</code> poisoned servings from PIZZA and EGG. This meets the threshold of 5, so their bill is <em>$1,647</em>.</p>
+  <p>Uncle Bob pays <em>$528 + $1,647 = $2,175</em> for this example.</p>
+  <p><em>How much must Uncle Bob pay for all sick guests in your input?</em> Submit a whole number of dollars, such as <code>2175</code>, without a dollar sign or commas.</p>
+  <section id="puzzleControls" aria-label="Puzzle input and answer"></section>
+  <noscript>Enable JavaScript to generate your input and check answers.</noscript>
+</body>
+</html>

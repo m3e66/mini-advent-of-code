@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 2000: Northpole Powerplant | Mini Advent of Code</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../puzzles.js" defer></script>
+  <script src="../progress.js" defer></script>
+  <script src="../puzzle-runner.js" defer></script>
+</head>
+<body class="puzzle-body" data-day="2000">
+  <h1>--- Day 2000: Northpole Powerplant ---</h1>
+  <p class="muted">By Yuhao</p>
+  <p>Santa Claus is ready to go! Oh no! The sleigh is out of battery, and there is no power plant in the North Pole...</p>
+  <p>Hold on! An elf remembers a cheap powerplant bought from a guy named Conway back in 1970. The machine and its extra-long instruction manual were tossed into the garage because they were so complicated. You dig through the horrific amount of sundries, rescue the machine, and start reading.</p>
+  <p>The powerplant converts vegetable DNA into special cells that reproduce by themselves. The machine suggests several initial cell placements. Test them all to find how much magic energy they produce for Santa's sleigh.</p>
+  <h2>--- The chamber ---</h2>
+  <p>The chamber is a <em>25 × 25 grid</em>. Both coordinates range from <em>−12 to 12</em>, inclusive. The machine occupies <code>(0,0)</code>; that square is blocked and can never hold a cell. The surrounding andesite walls are outside the grid. Cells do not wrap across edges.</p>
+  <p>Each unit is either alive or dead. An ordinary unit has eight neighbors: the surrounding horizontal, vertical, and diagonal squares. Edge units have five neighbors and corners have three. The machine square never counts as a live neighbor.</p>
+  <h2>--- Simulate the cells ---</h2>
+  <p>All initially live cells have age <em>0</em>. Update every unit <em>simultaneously</em> using only the previous generation:</p>
+  <ul>
+    <li>A live cell with fewer than two or more than three live neighbors dies. Its age resets to zero, but it remains dead.</li>
+    <li>A live cell with two or three live neighbors survives and its age increases by one.</li>
+    <li>A dead unit with exactly three live neighbors becomes alive. Its age is one greater than the oldest of those live neighbors.</li>
+    <li>All other dead units stay dead. Cap every live cell's age at <em>100</em>.</li>
+  </ul>
+  <p>Age zero does not mean dead: a newly placed age-zero cell is alive and counts as a neighbor.</p>
+  <h2>--- Harvest energy ---</h2>
+  <p>Before the first generation of each trial, clear any cells in the eight units immediately surrounding the machine. Also ignore any supplied cell at <code>(0,0)</code>. This initial clearing produces no energy and does not stop the trial.</p>
+  <p>After each full generation, check those eight neighboring units. At the <em>first</em> generation containing any live cell there, produce <em>600 × the sum of their ages</em> energy. Clear those cells and end that trial immediately.</p>
+  <p>A trial that becomes empty or repeats a live/dead layout without reaching the machine contributes <em>0</em>. Ages do not affect which units will be alive next, so a repeated layout cannot first reach the machine later. Still lifes count as repeating layouts.</p>
+  <h2>--- Read the recommendations ---</h2>
+  <p>Each input line describes a separate trial. Start each trial from a fresh empty grid:</p>
+  <pre class="puzzle-input">{130:(-5,-6),(-4,-5),(-5,-4),(-6,-4),(-4,-4)}</pre>
+  <p>The number before the colon was intended for an abandoned second part. <em>Ignore it</em>; it is not an age, multiplier, or generation limit. Each coordinate pair places one live cell. Repeated coordinates still describe a single cell, and an empty list produces no energy.</p>
+  <p>In this example, the first cell reaches the machine's surrounding ring at <code>(−1,−1)</code> after <em>12 generations</em>. Its age is 12 and no other cell is in the ring, so this trial produces <em>600 × 12 = 7,200</em> energy.</p>
+  <p>For a smaller example:</p>
+  <pre class="puzzle-input">{1:(2,-1),(2,0),(2,1)}</pre>
+  <p>After one generation, the live units are <code>(1,0)</code>, <code>(2,0)</code>, and <code>(3,0)</code>, all aged 1. Only <code>(1,0)</code> touches the machine, producing <em>600</em> energy. A batch containing these two examples produces <em>7,800</em>.</p>
+  <p><em>What is the total energy produced after testing every initial placement in your input?</em></p>
+  <section id="puzzleControls" aria-label="Puzzle input and answer"></section>
+  <noscript>Enable JavaScript to generate your input and check answers.</noscript>
+</body>
+</html>

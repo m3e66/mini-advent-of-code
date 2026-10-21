@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 24: A Nightmare Before Christmas | Mini Advent of Code</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../puzzles.js" defer></script>
+  <script src="../progress.js" defer></script>
+  <script src="../puzzle-runner.js" defer></script>
+</head>
+<body class="puzzle-body" data-day="24">
+  <h1>--- Day 24, again: A Nightmare Before Christmas ---</h1>
+  <p class="muted">By Ava</p>
+  <p>As Christmas Eve comes to a close, the Elves are anxious. It's just five minutes to midnight. Christmas is upon us, and all of your labor comes down to this day.</p>
+  <p>For twenty-four days, you've been fervently decorating the North Pole! And now, it seems as if your labor is finally over. The faint glow of your decorations seems to illuminate the night sky for all of the hard-working Elves this year. You exhale in a massive sigh of relief and watch the puff of your breath slowly dissipate into the luminous sky, proud of yourself for managing to save Christmas.</p>
+  <p>Suddenly, you hear an explosion! Your shoulders instinctively tense as you immediately assume a defensive position. You hear distant screaming from behind, and you quickly turn around.</p>
+  <p>A fiery inferno hisses from behind Santa's factories; dark-grey clouds of smoke begin rising rapidly into the unforgiving winter. Just as you're processing what you're seeing, you hear a snap.</p>
+  <p><em>And then, everything goes dark.</em></p>
+  <p>Your embedded night-vision immediately activates. Your mind is racing. It must've been the generator, you think; the influx of power caused by my decorations must've blown the only power supply!</p>
+  <p>Your body starts to heat up, adrenaline coursing through you. For a moment, you wish the North Pole was colder.</p>
+  <p>But then you remember the Fairies.</p>
+  <p>The Fairies are another group of Santa's helpers, yet aren't native to the North Pole—they aren't accustomed to the grueling temperatures like you and the Elves are. They need warmth to survive.</p>
+  <p>You continue watching the ceaseless fireball as it sears your eyes. Every single home in the North Pole just lost power, and every single fairy had unwillingly begun an icy, lethal countdown the moment the North Pole went up in flames.</p>
+  <p><em>Forget about saving Christmas. You needed to save lives.</em></p>
+  <p>You quickly rush into Fairyland: their own ethnic enclave, so to speak. Since Fairies can fly, their infrastructure isn't designed for you to easily move through it. Fortunately, there exists a main pathway that visits every house in Fairyland for non-Fairy tourists.</p>
+  <p>The entrance to Fairyland contains a brochure for tourists and, crucially, directions for moving through the main path.</p>
+  <h2>--- Follow the main pathway ---</h2>
+  <p>Grabbing one, you quickly skim the directions. They guide you through three-dimensional space. For example:</p>
+  <pre class="puzzle-input">FORWARD 1
+UP 1
+LEFT 2
+RIGHT 2
+BACKWARD 1
+DOWN 3</pre>
+  <p>Start at the entrance, <code>(0,0,0)</code>. Directions use fixed axes relative to the entrance: RIGHT/LEFT change x, UP/DOWN change y, and FORWARD/BACKWARD change z. Right, up, and forward are positive.</p>
+  <p>Each unit of movement reaches one location. <em>Count every house crossed</em>, including intermediate houses, not just instruction endpoints. The entrance is <em>not a house</em>; never count it, even when the path returns there.</p>
+  <p>In the example, <code>UP 1</code> reaches <code>(0,1,1)</code>. Then <code>LEFT 2</code> and <code>RIGHT 2</code> cross <code>(-1,1,1)</code> twice and return to <code>(0,1,1)</code>. Both houses are visited twice.</p>
+  <p>Traversing the first few instructions, you realize that houses crossed multiple times are larger and require more resources to evacuate.</p>
+  <p>You remember the North Pole's Crisis-Relief Department, designed for exactly this. They can save the Fairies. But they need to ration their resources effectively to save as many people as possible across the North Pole.</p>
+  <h2>--- Report the resources ---</h2>
+  <p>Use this heuristic: traverse the entire pathway and find the <em>largest number of visits to any house</em>. If several houses tie, add their visit counts together. Equivalently, multiply the maximum visit count by the number of houses with that count.</p>
+  <p>In the first example, two houses tie at two visits each. Report <em>2 × 2 = 4</em> resources.</p>
+  <p>Another example:</p>
+  <pre class="puzzle-input">FORWARD 1
+BACKWARD 1
+FORWARD 1
+BACKWARD 1
+UP 2</pre>
+  <p>The house at <code>(0,0,1)</code> is visited twice. The entrance is also reached twice, but it is excluded. <code>UP 2</code> visits two other houses once each, so they are not tied for the maximum. Report <em>2 × 1 = 2</em> resources.</p>
+  <p><em>How many resources should you report for your pathway?</em> Submit a whole number.</p>
+  <section id="puzzleControls" aria-label="Puzzle input and answer"></section>
+  <noscript>Enable JavaScript to generate your input and check answers.</noscript>
+</body>
+</html>

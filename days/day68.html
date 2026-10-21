@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 68: Christmas Tree Delivery | Mini Advent of Code</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../puzzles.js" defer></script>
+  <script src="../progress.js" defer></script>
+  <script src="../puzzle-runner.js" defer></script>
+</head>
+<body class="puzzle-body" data-day="68">
+  <h1>--- Day 68: Christmas Tree Delivery ---</h1>
+  <p class="muted">By jareth</p>
+  <p>Giving out Christmas presents isn't free, so to help Santa pay for all of the gifts he delivers each year, the elves are opening a Christmas tree delivery program! Instead of people having to buy a tree and decorate it themselves, they can place their orders online to have a pre-decorated tree delivered to their house. However, the elves need your help to determine how much to charge for their services.</p>
+  <p>Each customer's order is represented by a tree diagram. A blank line separates one tree from the next:</p>
+  <pre class="puzzle-input">    *
+   o**
+  o*@**
+ @@**@**
+@o**o@@@*
+
+       *
+      *o*
+     **o*@
+    *ooo***
+   **@*oo*o@
+  @@*o**ooo@*
+ *@*o*@ooo*o**
+**o@oo@o***oooo
+
+    *
+   **o
+  ***o*
+ *o@*oo*
+*@oo**@*o</pre>
+  <h2>--- Price each order ---</h2>
+  <ul>
+    <li>The base cost is the tree's <em>height × $50</em>. Height is the number of nonblank rows in that tree.</li>
+    <li>Each normal ornament (<code>o</code>) adds <em>$2</em>.</li>
+    <li>Each roll of tinsel (<code>@</code>) adds <em>$5</em>.</li>
+    <li>A tree with <em>more than 10</em> rolls of tinsel incurs one <em>$75 surcharge</em>. Exactly 10 rolls do not trigger it.</li>
+    <li>Add a <em>20% markup</em> to that tree's entire cost, including any surcharge.</li>
+  </ul>
+  <p>Stars (<code>*</code>) and indentation add no decoration costs. Blank separator lines do not add height. Calculate each tree separately, then add its marked-up price to the batch total.</p>
+  <h2>--- Example order ---</h2>
+  <pre class="puzzle-input">       *
+      *o*
+     **o*@
+    *ooo***
+   **@*oo*o@
+  @@*o**ooo@*
+ *@*o*@ooo*o**
+**o@oo@o***o@oo</pre>
+  <p>This tree has <em>8 rows</em>, <em>24 normal ornaments</em>, and <em>11 rolls of tinsel</em>.</p>
+  <p>Its cost is <code>8 × $50 + 24 × $2 + 11 × $5 + $75 = $578</code>. The tinsel surcharge applies because 11 is greater than 10.</p>
+  <p>The markup is <code>$578 × 20% = $115.60</code>. The elves charge <em>$578 + $115.60 = $693.60</em> for this order.</p>
+  <p><em>How much money will this batch of customer orders make the elves?</em> Submit the total sales amount in dollars, including all costs and markup, such as <code>693.60</code>. Use at most two decimal places, with no dollar sign or commas.</p>
+  <section id="puzzleControls" aria-label="Puzzle input and answer"></section>
+  <noscript>Enable JavaScript to generate your input and check answers.</noscript>
+</body>
+</html>

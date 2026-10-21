@@ -1,0 +1,8 @@
+{
+  "name": "mini-advent-of-code",
+  "private": true,
+  "scripts": {
+    "start": "node dev-server.cjs",
+    "test": "node tests/puzzles.test.cjs"
+  }
+}

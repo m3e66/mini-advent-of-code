@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 777: Gambling With Slots | Mini Advent of Code</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../puzzles.js" defer></script>
+  <script src="../progress.js" defer></script>
+  <script src="../puzzle-runner.js" defer></script>
+</head>
+<body class="puzzle-body" data-day="777">
+  <h1>--- Day 777: Gambling With Slots ---</h1>
+  <p class="muted">By Justin &amp; Muntasir</p>
+  <p>After the Elves finished organizing the presents, they felt an INSANE urge to gamble. As such, half of the Elves went to the only slot machine in the North Pole, with the other half heading to the only roulette in the North Pole. However, on the way to the only slot machine in the North Pole, the Elves were drinking some real red wine. Now, the Elves have had a little too much to drink and can't read the slot machine...</p>
+  <p>One of them asks you to read it for them, because for some reason they can still understand how the slot machine works. Natural gamblers. Unfortunately, you have never gambled before and don't know how to read the slot machine either.</p>
+  <p>Thankfully there are two frequent gamblers here in the North Pole (no one knows where they came from or why they gamble in the North Pole) and one of them, whose name is Muntasir, is conveniently here at a different gambling game nearby called Plinko. He refuses to help you at first until you have bothered him enough to tell you how to get the score from the slot machine in order to get you to leave him alone to play Plinko.</p>
+  <h2>--- Read the display ---</h2>
+  <p>The slot machine has a <em>3-row by 5-column</em> display. Each position contains a digit from 0 to 9, representing a symbol.</p>
+  <pre class="puzzle-input"># # # # #
+# # # # #
+# # # # #</pre>
+  <p>Spaces in the examples are for readability. Your actual input contains three lines of five digits, with <em>no spaces</em>.</p>
+  <ol>
+    <li>Add every digit once for the base score.</li>
+    <li>If all five digits in a row are identical, add that row's sum one more time.</li>
+    <li>If all three digits in a column are identical, add that column's sum one more time.</li>
+  </ol>
+  <p>Bonuses are independent. A digit at the intersection of a matching row and a matching column counts <em>three times</em>: once for its base value, once for its row, and once for its column. There are no diagonal bonuses.</p>
+  <h2>--- Example spin ---</h2>
+  <pre class="puzzle-input">1 2 3 4 5
+6 8 7 9 5
+1 6 2 7 5</pre>
+  <p>The base score is <code>15 + 35 + 21 = 71</code>. The last column contains only 5s, so add <code>5 + 5 + 5 = 15</code>. No row matches, and no other column matches.</p>
+  <p>The final score is <em>71 + 15 = 86</em>. Only the last column receives this bonus, not the whole first row.</p>
+  <h2>--- Overlapping patterns ---</h2>
+  <pre class="puzzle-input">1 2 3 4 5
+6 8 7 9 5
+5 5 5 5 5</pre>
+  <p>The base score is <code>15 + 35 + 25 = 75</code>. The bottom row adds 25 and the last column adds 15, for a final score of <em>115</em>.</p>
+  <p>The bottom-right 5 counts three times. The other bottom-row 5s count twice, and the two 5s above the bottom-right corner count twice.</p>
+  <p><em>What is the final score of the spin in your input?</em></p>
+  <section id="puzzleControls" aria-label="Puzzle input and answer"></section>
+  <noscript>Enable JavaScript to generate your input and check answers.</noscript>
+</body>
+</html>

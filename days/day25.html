@@ -1,34 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <title>Day 25</title>
-  <link rel="stylesheet" href="../style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 25: Delivery Dilemma | Mini Advent of Code</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../puzzles.js" defer></script>
+  <script src="../progress.js" defer></script>
+  <script src="../puzzle-runner.js" defer></script>
 </head>
-
-<body>
-  <h2>-- Day 25: Delivery Dilemma --</h2>
-  <p>
-    Your puzzle input was
-    <span id="output-31"></span>
-  </p>
-
-  <textarea style="max-width: 200px; min-height: 10px; max-height: 20px;" id="input3"
-    placeholder="Paste answer here..."></textarea>
-  <br>
-  <button onclick="day3()" class="text-button" style="color:#00cc00;">[ Submit ]</button>
-  <div id="output32"></div>
-  <p>Feel stuck? Well sadly there is not enough Reddit discussion for this puzzle</p>
-
-  <script>
-    function resizeIframe() {
-      const height = document.documentElement.scrollHeight;
-      parent.document.getElementById("dayFrame").style.height = height + "px";
-    }
-
-    window.addEventListener("load", resizeIframe);
-  </script>
+<body class="puzzle-body" data-day="25">
+  <h1>--- Day 25: Delivery Dilemma ---</h1>
+  <p class="muted">By selina</p>
+  <p>Christmas Eve has finally arrived, but the sleigh can only hold so much weight. Santa and the elves need your help to find how many rounds it takes to deliver all the presents before families wake to empty houses.</p>
+  <p>Your manager, Selina, has assigned you to New York. Santa has <em>10,000 gifts</em> to deliver within an hour before moving on to another state and country. You are the elves' last hope!</p>
+  <h2>--- Load the sleigh ---</h2>
+  <p>The sleigh can carry at most <em>10,000 lbs</em> and <em>10,000 volume units</em> per round. Each line describes one gift as <code>weight-volume</code>:</p>
+  <pre class="puzzle-input">120-468</pre>
+  <p>This gift weighs 120 lbs and occupies 468 volume units.</p>
+  <ul>
+    <li>Load gifts in their <em>input order</em>. Do not reorder or skip ahead.</li>
+    <li>If the next gift would make either total exceed 10,000, deliver the current load and start a new round with that gift.</li>
+    <li>A total of <em>exactly 10,000</em> is allowed. Every gift fits individually.</li>
+    <li>Both totals reset for each round. Count the final round, even if it is only partly full.</li>
+  </ul>
+  <h2>--- Example ---</h2>
+  <pre class="puzzle-input">520-71
+55-570
+744-635
+986-372
+440-1005
+497-86
+881-653
+647-445
+501-691
+1011-960
+777-279
+472-974
+41-183
+454-467
+779-743
+919-592
+967-728
+492-825
+313-368
+892-518</pre>
+  <p>Gifts <em>1–16</em> total <em>9,724 lbs</em> and <em>8,726 volume units</em>. Gift 17 would raise the weight to 10,691 lbs, so it must start a second round.</p>
+  <p>Gifts <em>17–20</em> total 2,664 lbs and 2,439 volume units. The answer is <em>2</em>.</p>
+  <p><em>How many rounds does Santa need to deliver every gift in your input?</em> Submit a whole number, such as <code>2</code>.</p>
+  <section id="puzzleControls" aria-label="Puzzle input and answer"></section>
+  <noscript>Enable JavaScript to generate your input and check answers.</noscript>
 </body>
-
 </html>

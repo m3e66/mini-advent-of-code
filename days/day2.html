@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 2: Lights, Machines and Wattage | Mini Advent of Code</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../puzzles.js" defer></script>
+  <script src="../progress.js" defer></script>
+  <script src="../puzzle-runner.js" defer></script>
+</head>
+<body class="puzzle-body" data-day="2">
+  <h1>--- Day 2: Lights, Machines and Wattage ---</h1>
+  <p>The elves this year have decided to make their Christmas more energy efficient to reduce environmental impact and power grid issues as a result of making so many gifts for millions of people. Instead of using the power grid, they will use solar panels to power the North Pole's gift-building machines and Christmas lights.</p>
+  <p>The elves need to find out how many solar panels to order. If a row of plugs receives too little power, lights and machines will fail to work properly, and the machines might produce LEGOs with manufacturing defects!</p>
+  <h2>--- Power each row ---</h2>
+  <p>Each input row contains <em>exactly 30 digits</em>, with no spaces. Each digit describes one connected component:</p>
+  <ul>
+    <li><code>1</code>: a string of Christmas lights, consuming <em>6 W</em>.</li>
+    <li><code>2</code>: a gift machine, consuming <em>234 W</em>.</li>
+  </ul>
+  <p>Each solar panel provides <em>500 W of capacity</em>. Rows cannot share panels because of how the box is wired. For each row, find the <em>smallest whole number of panels</em> whose combined capacity meets or exceeds that row's demand. Unused capacity is allowed; it is not extra power forced into the components.</p>
+  <p>Add the number of panels needed by each row to find the total order. Round up <em>each row separately</em>, before adding. <code>1000 W = 1 kW</code>.</p>
+  <h2>--- Example ---</h2>
+  <pre class="puzzle-input">111222222112222112212121212121
+212212211211212121222121111211</pre>
+  <p>The first row contains 13 light strings and 17 machines. It uses <code>13 × 6 + 17 × 234 = 4056 W</code> (4.056 kW), so it needs <em>9 panels</em>. Eight panels provide only 4000 W of capacity.</p>
+  <p>The second row contains 16 light strings and 14 machines. It uses <code>16 × 6 + 14 × 234 = 3372 W</code> (3.372 kW), so it needs <em>7 panels</em>.</p>
+  <p>This example setup needs <em>9 + 7 = 16 solar panels</em>.</p>
+  <p><em>How many solar panels must the elves order for all rows in your input?</em></p>
+  <section id="puzzleControls" aria-label="Puzzle input and answer"></section>
+  <noscript>Enable JavaScript to generate your input and check answers.</noscript>
+</body>
+</html>

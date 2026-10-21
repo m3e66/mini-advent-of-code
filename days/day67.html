@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 67: The Elves Have 67 Dollars | Mini Advent of Code</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../puzzles.js" defer></script>
+  <script src="../progress.js" defer></script>
+  <script src="../puzzle-runner.js" defer></script>
+</head>
+<body class="puzzle-body" data-day="67">
+  <h1>--- Day 67: The Elves Have 67 Dollars ---</h1>
+  <p>The elves have <em>67 dollars</em>, and their bank account statement has arrived in a rather unusual format. They need to find their current balance before installing a supercharger upgrade on Santa's sleigh without ending up in debt.</p>
+  <p>The upgrade costs <em>$5,000</em>. The elves want money left over, so they will buy it only if their final balance is <em>strictly greater than $5,000</em>. Exactly $5,000 is not enough under their rule.</p>
+  <h2>--- Decode the statement ---</h2>
+  <p>Start with a balance of <em>67</em>. Read the statement from left to right. It contains four symbols:</p>
+  <ul>
+    <li><code>{</code> increases the balance by 1.</li>
+    <li><code>}</code> decreases the balance by 1.</li>
+    <li><code>[</code> opens a doubling window over the <em>next two symbol positions</em>. Any money change in that window is doubled. Overlapping windows multiply: two windows make a change worth 4.</li>
+    <li><code>~</code> skips everything through the <em>next two money changes</em> (<code>{</code> or <code>}</code>). Skipped money changes do nothing. Any <code>[</code> or <code>~</code> encountered while skipping is ignored and does not extend the skip.</li>
+  </ul>
+  <p>Doubling changes only the value of <code>{</code> and <code>}</code>; it never changes a modifier's duration or strength. Every symbol position, including a modifier or skipped symbol, uses a position in an existing doubling window. A modifier at the end simply has no effect beyond the end of the statement.</p>
+  <h2>--- Overlapping doubles ---</h2>
+  <pre class="puzzle-input">[[{}</pre>
+  <p>The first <code>[</code> covers the second <code>[</code> and the <code>{</code>. The second <code>[</code> covers both money changes. Thus <code>{</code> adds 4 and <code>}</code> subtracts 2: a net change of <em>+2</em>, leaving a final balance of <em>69</em>.</p>
+  <h2>--- Skipped changes ---</h2>
+  <pre class="puzzle-input">{{[}}~[{}</pre>
+  <p>The first <code>{{</code> adds 2. Then <code>[}}</code> subtracts 4. Finally, <code>~</code> ignores the following <code>[</code> and skips both money changes. The net change is <em>−2</em>, leaving a final balance of <em>65</em>. Neither example can fund the upgrade.</p>
+  <p>Your input is one line of 5,001 symbols, with no spaces. The statement may end in an unfinished modifier window; process only the symbols present.</p>
+  <p><em>What is the elves' final dollar balance?</em> Submit the whole-number balance, which may be negative. After a correct submission, you will also learn whether they can afford the upgrade.</p>
+  <section id="puzzleControls" aria-label="Puzzle input and answer"></section>
+  <noscript>Enable JavaScript to generate your input and check answers.</noscript>
+</body>
+</html>

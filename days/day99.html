@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 99: Jack &amp; Jill - Water Hill Spurge | Mini Advent of Code</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../puzzles.js" defer></script>
+  <script src="../progress.js" defer></script>
+  <script src="../puzzle-runner.js" defer></script>
+</head>
+<body class="puzzle-body" data-day="99">
+  <h1>--- Day 99: Jack &amp; Jill - Water Hill Spurge ---</h1>
+  <p class="muted">By tyson</p>
+  <p>As the story goes, there is a boy named Jack, and a girl named Jill. Their parents send them up a hill to collect water from a well. But one hill does not have enough water for the whole village!</p>
+  <p>Their mother sends them traveling to other villages with a budget for bigger and additional buckets. They can also sell water through each village's limited exchange offers. Their goal is to return home with enough water.</p>
+  <h2>--- Plan each trip ---</h2>
+  <ul>
+    <li>Start each trip with its stated budget and <em>empty</em> starting buckets. Capacities add together.</li>
+    <li>All offers from that trip's villages are available in <em>any order</em>. There are no travel costs or restrictions on returning to a village.</li>
+    <li>Each listed bucket can be <em>bought once</em>. It permanently increases capacity for that trip and can be filled again after water is sold. Existing buckets are not replaced.</li>
+    <li>Each listed well can be <em>tapped once</em>. Pay its full price, then take as much of its water as fits in available capacity. Any excess is discarded; it cannot be collected later.</li>
+    <li>An exchange sells the stated quantity of stored water for the stated cash. It frees bucket space and can be repeated only up to its stated limit. Partial exchanges are not allowed.</li>
+    <li>Cash must never become negative, and stored water must never exceed capacity. Buying, collecting, and selling can be interleaved.</li>
+    <li>A trip succeeds if <em>any valid plan</em> ends with at least its water goal. Each trip starts fresh; cash, water, buckets, and offers do not carry between trips.</li>
+  </ul>
+  <h2>--- Read the input ---</h2>
+  <p>The first line is the number of trips. Each trip starts with <code>T1</code>, <code>T2</code>, and so on. The next line contains <code>water-goal starting-budget village-count</code>. The following line lists starting bucket capacities.</p>
+  <p>Each village has these sections:</p>
+  <ol>
+    <li><code>Vn</code> identifies the village.</li>
+    <li>An exchange line contains <code>cash-received gallons-sold maximum-exchanges</code>, or just <code>0</code> if no exchange is offered.</li>
+    <li><code>Bn</code> begins the bucket offers. Each following line contains <code>capacity price</code>, until the well marker.</li>
+    <li><code>Wn</code> begins the wells. Each following line contains <code>water-available price</code>, until another village, trip, or the end of the file.</li>
+  </ol>
+  <p>The number in <code>Bn</code> and <code>Wn</code> is the <em>village ID, not an item count</em>. Empty sections are allowed. Blank lines are for readability. Identical offers on different lines are separate purchases.</p>
+  <p>Website inputs contain 15–30 trips, each with two villages, four bucket offers, four wells, and at most four exchanges in total. Smaller examples use the same rules. These smaller trips let you explore complete plans without relying on greedy choices.</p>
+  <h2>--- A complete two-trip example ---</h2>
+  <pre class="puzzle-input">2
+T1
+90 98 2
+12 25
+
+V1
+0
+B1
+14 20
+3 7
+6 9
+30 50
+W1
+30 0
+
+V2
+0
+B2
+W2
+25 2
+35 5
+
+T2
+10 0 1
+10
+V3
+0
+B3
+W3
+9 0</pre>
+  <p>Trip 1 starts with <code>12 + 25 = 37</code> gallons of capacity and $98. Buy all four extra buckets for <code>$20 + $7 + $9 + $50 = $86</code>. Capacity is now <code>37 + 14 + 3 + 6 + 30 = 90</code>, with $12 left.</p>
+  <p>Collect the 30 free gallons, then buy 25 gallons for $2 and 35 gallons for $5. Jack and Jill finish with <em>90 gallons</em> and <em>$5</em>. Trip 1 succeeds.</p>
+  <p>Trip 2 has capacity for 10 gallons, but its only well contains 9. It fails. The answer for this example is <em><code>10</code></em>.</p>
+  <p><em>Which trips can succeed?</em> Submit one digit per trip in input order: <code>1</code> for success and <code>0</code> for failure. Preserve leading zeroes. For example, failure followed by success is <code>01</code>, not <code>1</code>.</p>
+  <section id="puzzleControls" aria-label="Puzzle input and answer"></section>
+  <noscript>Enable JavaScript to generate your input and check answers.</noscript>
+</body>
+</html>

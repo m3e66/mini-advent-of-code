@@ -1,139 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <title>Day 2050</title>
-  <link rel="stylesheet" href="../style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Day 2050: Time Travel!? | Mini Advent of Code</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../puzzles.js" defer></script>
+  <script src="../progress.js" defer></script>
+  <script src="../puzzle-runner.js" defer></script>
 </head>
+<body class="puzzle-body" data-day="2050">
 
-<body>
-  <h2>-- Day 2050: Time Travel?! --</h2>
-  <h7>From: <h7><a target="_blank" style="color: #00cc00;">Leo</a></h7>,</h7>
-  <p style="margin:0;"><small>Poor Elf That is writing this on Christmas</small></p>
-  <p>Merry Christmas! Or like what Santa said Early Christmas, because he will be launching a <a
-      href="https://en.wikipedia.org/wiki/Hawking%27s_time_traveller_party" target="_blank" style="color: #00cc00;">time
-      travel party</a> through the whole December to all the future time travellers, you can come at any time in
-    December.</p>
-  <p>But because of the strong magnetic field on the North Pole, not only you can't take your <a
-      href="https://en.wikipedia.org/wiki/Back_to_the_Future" target="_blank" style="color: #00cc00;">iconic DMC
-      DeLorean</a> over, and after you time traveled you can only stay for an hour then you will flicker back. But as
-    smart as you are, you found a pattern. The sequence looks awfully like the <a
-      href="https://en.wikipedia.org/wiki/Recam%C3%A1n%27s_sequence" target="_blank" style="color: #00cc00;">Recamán's
-      sequence</a>. There are only 744 hours in December, so you better hurry to calculate which hours to start (the
-    range in your puzzle input) to get the most hours you can get with your idol Santa. You plug the sequence on your
-    high tech calculator, if you start on hour 0, the first terms of the sequence are:</p>
-  <p>0, 1, 3, 6, 2, 7, 13, 20, 12, 21, 11, 22, 10, 23, 9, 24, 8, 25, 43, 62, 42, 63, 41, 18, 42, 17, 43, 16, 44, 15, 45,
-    14, 46, 79, 113, 78, 114, 77, 39, 78, 38, 79, 37, 80, 36, 81, 35, 82, 34, 83, 33, 84, 32, 85, 31, 86, 30, 87, 29,
-    88, 28, 89, 27, 90, 26, 91, 157, 224, 156, 225, 155</p>
-  <p>Number pattern starting at 0, where each new term is found by either subtracting or adding the current step number
-    (1, 2, 3...) from the previous term, with a key rule: never go below zero, and never use a number that's already in
-    the sequence; if you can't subtract, you must add, but you can repeat numbers when adding.</p>
-  <p style="margin:0;">a0 = 0 (Start)</p>
-  <p style="margin:0;">n = 1: 0 − 1 = −1 (Negative, so add): a1 = 0 + 1 = 1</p>
-  <p style="margin:0;">n = 2: 1 − 2 = −1 (Negative, so add): a2 = 1 + 2 = 3</p>
-  <p>Time is evergoing and never stopping so for example if you decide to start at hour 3 the next jump is by 3 units
-    and not starting at 0 units. If you picked an hour that is not in the sequence it won't work as it doesn't have a
-    unit to jump. But remember that there are only 744 hours in December so the maximum number you can go up to is 744.
-  </p>
+  <h1>--- Day 2050: Time Travel!? ---</h1>
+  <p class="muted">By Leo Xu</p>
+  <p>Merry Christmas! Santa is throwing a party for time travelers. A strong magnetic field at the North Pole makes your time machine flicker forward after each visit. Find the starting hour that gives you the most visits with Santa before the party closes.</p>
+  <h2>--- Find the eligible hours ---</h2>
+  <p>First generate terms a[0] through a[744] of the following sequence. Start with a[0] = 0. At step n, try subtracting n from the previous term. Use that result if it is nonnegative and has never appeared before. Otherwise add n to the previous term; addition may repeat a number.</p>
+  <pre class="puzzle-input">n = 1: 0 - 1 is negative; use 0 + 1 = 1
+n = 2: 1 - 2 is negative; use 1 + 2 = 3
+n = 3: 3 - 3 = 0 was already used; use 3 + 3 = 6
+n = 4: 6 - 4 = 2 is new; use 2
 
-  <p style="margin:0; text-indent:620px;">- The Legendary Time Traveler</p>
-  <p>
-    <a target="_blank" style="color: #FFFFFF;">Now hurry before others get there!</a>
-  </p>
+First terms: 0, 1, 3, 6, 2, 7, 13, 20, 12, 21, ...</pre>
+  <p>A starting hour is eligible if it appears anywhere in those 745 terms. Your input is an inclusive range <code>start-end</code>. Only consider eligible starting hours in that range.</p>
+  <h2>--- Take the forward jumps ---</h2>
+  <p>For each candidate starting hour h, count the starting visit. Your first forward jump has size h, except that hour 0 starts with a jump of size 1. Increase the jump size by 1 after every jump. Stop before a jump would land after hour 744. Landing exactly on hour 744 counts. Later landings do not need to be eligible sequence terms.</p>
+  <p>The sequence determines which starting hours are allowed; the forward-jump rule determines the visits.</p>
+  <pre class="puzzle-input">Example with a closing hour of 10 and input 1-3:
+Start 1: 1, 2, 4, 7       = 4 visits
+Start 2: 2, 4, 7          = 3 visits
+Start 3: 3, 6, 10         = 3 visits
+Answer: 1</pre>
+  <p>Your real closing hour is <em>744</em>. If several candidates give the same number of visits, choose the smallest starting hour. If no starting hour is eligible, answer -1.</p>
+  <p><em>Which starting hour in your range gives the most visits?</em></p>
 
-  <p>
-    Your puzzle input was
-    <span id="output"></span>
-  </p>
-
-  <textarea style="max-width: 200px; min-height: 10px; max-height: 20px;" id="input1"
-    placeholder="Paste answer here..."></textarea>
-  <br>
-  <button onclick="sol2050()" class="text-button" style="color:#00cc00;">[ Submit ]</button>
-  <p><span id="output12"></span></p>
-  <p>Feel stuck? Well sadly there is not enough Reddit discussion for this puzzle</p>
-
-  <script>
-    function input2050() {
-      let num1 = 0;
-      let num2 = 0;
-      while (num1 === num2) {
-        num1 = Math.floor(Math.random() * 745);
-        num2 = Math.floor(Math.random() * 745);
-      }
-      let result = num1 < num2 ? num1 + '-' + num2 : num2 + '-' + num1;
-      document.getElementById('output').textContent = result;
-    }
-    function sol2050() {
-      const MAX = 744;
-      const input = result;
-      const parts = input.split("-");
-      const start = parseInt(parts[0], 10);
-      const end = parseInt(parts[1], 10);
-
-      const used = new Set();
-      let past = 0;
-      used.add(0);
-
-      for (let n = 1; n <= MAX; n++) {
-        const sub = past - n;
-        if (sub >= 0 && !used.has(sub)) {
-          past = sub;
-        } else {
-          past = past + n;
-        }
-        used.add(past);
-      }
-
-      let bestHour = -1;
-      let bestJumps = 0;
-
-      for (let h = start; h <= end; h++) {
-        if (!used.has(h)) continue;
-
-
-        let jumps = 0;
-        let current = h;
-        let step = h;
-
-        while (current <= MAX) {
-          current += step;
-          step++;
-          if (current <= MAX) jumps++;
-        }
-
-        if (jumps > bestJumps) {
-          bestJumps = jumps;
-          bestHour = h;
-        }
-      }
-
-      let userInput1 = Number(document.getElementById("input1").value);
-
-      if (!isNaN(userInput1)) {
-        if (userInput1 === bestHour) {
-          document.getElementById("output12").textContent = "Correct!";
-          document.getElementById("input1").disabled = true;
-        } else {
-          document.getElementById("output12").textContent = "Wrong!";
-        }
-      } else {
-        document.getElementById("output12").textContent = "Please enter a valid number!";
-      }
-    }
-
-    input2050();
-  </script>
-  <script>
-    function resizeIframe() {
-      const height = document.documentElement.scrollHeight;
-      parent.document.getElementById("dayFrame").style.height = height + "px";
-    }
-
-    window.addEventListener("load", resizeIframe);
-  </script>
-
+  <section id="puzzleControls" aria-label="Puzzle input and answer"></section>
+  <noscript>Enable JavaScript to generate your input and check answers.</noscript>
 </body>
-
 </html>

@@ -2,11 +2,11 @@
   'use strict';
   const definitions = [
     { day: '24', title: 'A Nightmare Before Christmas', author: 'Ava', kind: 'puzzle' },
-    { day: '25', title: 'Delivery Dilemma', author: 'selina', kind: 'puzzle' },
-    { day: '99', title: 'Jack & Jill - Water Hill Spurge', author: 'tyson', kind: 'puzzle' },
-    { day: '74', title: 'Uncle Bob kindly sponsored this feast', author: 'ada', kind: 'puzzle' },
+    { day: '25', title: 'Delivery Dilemma', author: 'Selina Jiang', kind: 'puzzle' },
+    { day: '99', title: 'Jack & Jill - Water Hill Spurge', author: 'Tyson', kind: 'puzzle' },
+    { day: '74', title: 'Uncle Bob kindly sponsored this feast', author: 'Ada', kind: 'puzzle' },
     { day: '2000', title: 'Northpole Powerplant', author: 'Yuhao', kind: 'puzzle' },
-    { day: '68', title: 'Christmas Tree Delivery', author: 'jareth', kind: 'puzzle' },
+    { day: '68', title: 'Christmas Tree Delivery', author: 'Jareth', kind: 'puzzle' },
     { day: '67', title: 'The Elves Have 67 Dollars', author: '', kind: 'puzzle' },
     { day: '2', title: 'Lights, Machines and Wattage', author: '', kind: 'puzzle' },
     { day: '777', title: 'Gambling With Slots', author: 'Justin & Muntasir', kind: 'puzzle' },

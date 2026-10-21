@@ -49,8 +49,10 @@ main:focus { outline: none; }
 .eyebrow { margin-bottom: 12px; letter-spacing: .03em; }
 .intro { max-width: 71ch; }
 .hero-actions { display: flex; gap: 1.7rem; flex-wrap: wrap; margin-top: 24px; font-size: .9rem; }
-.winter-scene { margin: 34px 0 35px; padding: 22px 0 15px; border-block: 1px solid var(--line); overflow: hidden; }
+.winter-scene { margin: 34px 0 35px; padding: 10px 0; overflow: hidden; }
 .winter-scene pre { font: inherit; font-size: clamp(10px, 1.08vw, 15px); line-height: 1.4; margin: 0 auto; width: fit-content; }
+.winter-scene .tree { color: #00cc00; }
+.winter-scene .gold { color: #ffff66; }
 .snow { color: #77778e; }
 .tree { color: #00a83b; }
 .tree-dim { color: #31724d; }
